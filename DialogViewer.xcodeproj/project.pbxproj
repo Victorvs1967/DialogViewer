@@ -54,14 +54,22 @@
 		D3A819E91FD5F96E0070515E /* DialogViewer */ = {
 			isa = PBXGroup;
 			children = (
-				D3A819EA1FD5F96E0070515E /* AppDelegate.swift */,
 				D3A819EC1FD5F96E0070515E /* ViewController.swift */,
 				D3A819EE1FD5F96F0070515E /* Main.storyboard */,
-				D3A819F11FD5F96F0070515E /* Assets.xcassets */,
-				D3A819F31FD5F96F0070515E /* LaunchScreen.storyboard */,
 				D3A819F61FD5F96F0070515E /* Info.plist */,
+				D3A819FC1FD5F9970070515E /* Supporting Files */,
 			);
 			path = DialogViewer;
+			sourceTree = "<group>";
+		};
+		D3A819FC1FD5F9970070515E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3A819EA1FD5F96E0070515E /* AppDelegate.swift */,
+				D3A819F11FD5F96F0070515E /* Assets.xcassets */,
+				D3A819F31FD5F96F0070515E /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
