@@ -23,10 +23,16 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     self.collectionView?.register(ContentCell.self, forCellWithReuseIdentifier: "CONTENT")
+    self.collectionView?.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HEADER")
     
     var contentInset = collectionView!.contentInset
     contentInset.top = 20
     collectionView!.contentInset = contentInset
+    
+    let layout = collectionView?.collectionViewLayout
+    let flow = layout as! UICollectionViewFlowLayout
+    flow.sectionInset = UIEdgeInsetsMake(10, 20, 30, 20)
+    flow.headerReferenceSize = CGSize(width: 100, height: 25)
     
   }
   
@@ -62,7 +68,22 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
   
   //  MARK: Collection View Flow Layout Delegate
   
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let words = wordsInSection(section: indexPath.section)
+    let size = ContentCell.sizeForContentString(s: words[indexPath.row], forMafWidth: collectionView.bounds.size.width)
+    return size
+  }
   
+  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    if kind == UICollectionElementKindSectionHeader {
+      let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HEADER", for: indexPath) as! HeaderCell
+      cell.maxWidth = collectionView.bounds.size.width
+      cell.text = sections[indexPath.section]["header"]
+      return cell
+    } else {
+      abort()
+    }
+  }
   
 }
 
